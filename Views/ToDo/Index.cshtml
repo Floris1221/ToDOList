@@ -1,0 +1,38 @@
+﻿@model IEnumerable<ToDoList.Models.TodoList>
+
+@{
+    ViewData["Title"] = "Index";
+    List<TodoList> items = new List<TodoList>();
+    }
+
+    <h1>To Do List</h1>
+
+    <p>
+        <a asp-action="Add">Create New</a>&nbsp;&nbsp; | &nbsp;&nbsp;
+        <a asp-action="GenPDF">PDF Generate</a>
+
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Topic)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Topic)
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
